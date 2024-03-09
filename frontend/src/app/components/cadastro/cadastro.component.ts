@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CadastroService } from '../../services/cadastro.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -11,7 +12,7 @@ export class CadastroComponent {
   public senha: string;
   public cadastro: any;
 
-  constructor() {
+  constructor(private cadastroService: CadastroService) {
     this.email = '';
     this.nome = '';
     this.senha = '';
@@ -26,5 +27,15 @@ export class CadastroComponent {
     this.cadastro = JSON.stringify(this.cadastro);
     console.log(this.cadastro);
 
+    this.cadastroService.cadastrarUsuario(this.cadastro).subscribe(
+      response => {
+        console.log('Cadastro realizado com sucesso:', response);
+        // Faça o que for necessário após o sucesso do cadastro
+      },
+      error => {
+        console.error('Erro ao cadastrar usuário:', error);
+        // Trate o erro conforme necessário
+      }
+    );
   }
 }
