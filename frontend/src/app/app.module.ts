@@ -9,12 +9,14 @@ import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    CadastroComponent
+    CadastroComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
