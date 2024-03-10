@@ -14,24 +14,33 @@ class AuthController extends Controller
      * Registrar um novo usuário.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function register(Request $request)
     {
-        $request->validate([
+        // Validar os dados recebidos na requisição
+        $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        try {
+            // Criar um novo usuário com os dados fornecidos
+            $user = User::create([
+                'name' => $validatedData['name'],
+                'email' => $validatedData['email'],
+                'password' => Hash::make($validatedData['password']),
+            ]);
 
-        return response()->json(['message' => 'User registered successfully'], 201);
+            // Retornar uma resposta JSON indicando sucesso
+            return response()->json(['message' => 'User registered successfully'], 201);
+        } catch (\Exception $e) {
+            // Em caso de falha na criação do usuário, retornar uma resposta com o erro
+            return response()->json(['message' => 'Failed to register user', 'error' => $e->getMessage()], 500);
+        }
     }
+
 
     /**
      * Fazer login no sistema.
