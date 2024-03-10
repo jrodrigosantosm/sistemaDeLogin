@@ -16,8 +16,12 @@ export class CadastroService {
 
 
   cadastrarUsuario(usuario: any): Observable<any> {
-    console.log(usuario);
     return this.http.post(`${this.apiUrl}/cadastrar`, usuario);
+  }
+
+  loginAutomatico(usuario: any): Observable<any> {
+    console.log(usuario)
+    return this.http.post(`${this.apiUrl}/login`, usuario);
   }
 }
 
