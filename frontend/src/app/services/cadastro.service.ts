@@ -10,11 +10,14 @@ import { environment } from '../../environments/environment';
 })
 export class CadastroService {
 
+  private apiUrl = 'http://127.0.0.1:8000/api';
+
   constructor(private http: HttpClient) { }
 
+
   cadastrarUsuario(usuario: any): Observable<any> {
-    console.log(usuario)
-    return this.http.post(environment.cadastroUrl, usuario);
+    console.log(usuario);
+    return this.http.post(`${this.apiUrl}/cadastrar`, usuario);
   }
 }
 

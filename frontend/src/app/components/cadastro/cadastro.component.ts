@@ -24,7 +24,7 @@ export class CadastroComponent {
       "email": this.email,
       "password": this.senha
     }
-    this.cadastro = JSON.stringify(this.cadastro);
+    let cadastroJson = JSON.stringify(this.cadastro);
 
     this.cadastroService.cadastrarUsuario(this.cadastro).subscribe(
       response => {
