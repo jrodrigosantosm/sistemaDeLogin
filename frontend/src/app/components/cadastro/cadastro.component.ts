@@ -20,21 +20,18 @@ export class CadastroComponent {
 
   cadastrar(): void {
     this.cadastro = {
-      "nome": this.nome,
+      "name": this.nome,
       "email": this.email,
       "password": this.senha
     }
     this.cadastro = JSON.stringify(this.cadastro);
-    console.log(this.cadastro);
 
     this.cadastroService.cadastrarUsuario(this.cadastro).subscribe(
       response => {
         console.log('Cadastro realizado com sucesso:', response);
-        // Faça o que for necessário após o sucesso do cadastro
       },
       error => {
         console.error('Erro ao cadastrar usuário:', error);
-        // Trate o erro conforme necessário
       }
     );
   }

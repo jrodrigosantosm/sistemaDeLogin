@@ -13,6 +13,7 @@ export class CadastroService {
   constructor(private http: HttpClient) { }
 
   cadastrarUsuario(usuario: any): Observable<any> {
+    console.log(usuario)
     return this.http.post(environment.cadastroUrl, usuario);
   }
 }
