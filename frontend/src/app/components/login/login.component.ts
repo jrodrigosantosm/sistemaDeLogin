@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CadastroService } from '../../services/cadastro.service';
 import { Router } from '@angular/router';
-import { Token } from '@angular/compiler';
 import { AuthService } from '../../services/Auth.service';
 
 @Component({
@@ -50,13 +49,5 @@ export class LoginComponent {
 
   setToken(token: string): void {
     localStorage.setItem(this.tokenKey, token);
-  }
-
-  getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
-  }
-
-  removeToken(): void {
-    localStorage.removeItem(this.tokenKey);
   }
 }
