@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CadastroService } from '../../services/cadastro.service';
 import { Router } from '@angular/router';
+import { Token } from '@angular/compiler';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ export class LoginComponent {
   public email: string;
   public senha: string;
   public ususario: any;
+  private tokenKey = 'access_token'
 
   constructor(
     private cadastroService: CadastroService,
@@ -32,12 +34,24 @@ export class LoginComponent {
 
     this.cadastroService.login(this.ususario).subscribe(
       (response) => {
-        console.log('Login bem-sucedido!', response);
         this.router.navigate(['/']);
+        this.setToken(response.token);
       },
       (error) => {
         console.error('Erro no login automático:', error);
       }
     );
+  }
+
+  setToken(token: string): void {
+    localStorage.setItem(this.tokenKey, token);
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem(this.tokenKey);
+  }
+
+  removeToken(): void {
+    localStorage.removeItem(this.tokenKey);
   }
 }
