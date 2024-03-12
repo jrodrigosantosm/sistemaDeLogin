@@ -23,5 +23,10 @@ export class CadastroService {
     console.log(usuario)
     return this.http.post(`${this.apiUrl}/login`, usuario);
   }
+
+  login(usuario: any): Observable<any> {
+    console.log(usuario)
+    return this.http.post(`${this.apiUrl}/login`, usuario);
+  }
 }
 
