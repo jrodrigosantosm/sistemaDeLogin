@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CadastroService } from '../../services/cadastro.service';
 import { Router } from '@angular/router';
 import { Token } from '@angular/compiler';
+import { AuthService } from '../../services/Auth.service';
 
 @Component({
   selector: 'app-login',
@@ -18,13 +19,17 @@ export class LoginComponent {
   constructor(
     private cadastroService: CadastroService,
     private router: Router,
+    private authService: AuthService,
   ) {
     this.email = '';
     this.senha = '';
-
-
   }
 
+  ngOnInit(): void {
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/']);
+    }
+  }
 
   login() {
     this.ususario = {
