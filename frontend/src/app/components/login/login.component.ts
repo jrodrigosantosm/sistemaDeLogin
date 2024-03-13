@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CadastroService } from '../../services/cadastro.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/Auth.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ErrorModalComponent } from '../error-modal/error-modal.component';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +21,7 @@ export class LoginComponent {
     private cadastroService: CadastroService,
     private router: Router,
     private authService: AuthService,
+    private modalService: NgbModal
   ) {
     this.email = '';
     this.senha = '';
@@ -42,6 +45,7 @@ export class LoginComponent {
         this.setToken(response.token);
       },
       (error) => {
+        this.openErrorModal();
         console.error('Erro no login automático:', error);
       }
     );
@@ -49,5 +53,10 @@ export class LoginComponent {
 
   setToken(token: string): void {
     localStorage.setItem(this.tokenKey, token);
+  }
+
+  openErrorModal() {
+    const modalRef = this.modalService.open(ErrorModalComponent);
+    modalRef.componentInstance.message = 'Mensagem de erro aqui';
   }
 }
