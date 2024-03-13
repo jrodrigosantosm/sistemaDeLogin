@@ -29,3 +29,7 @@
         </div>
     </div>
 </nav>
+<div>
+    <p-dropdown [options]="cities" [(ngModel)]="selectedCity" placeholder="Select a City" [editable]="true"
+        optionLabel="name"></p-dropdown>
+</div>
