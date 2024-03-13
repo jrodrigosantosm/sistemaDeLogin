@@ -1,0 +1,16 @@
+.home {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.column {
+    flex: 1;
+
+    padding: 20px;
+    box-sizing: border-box;
+    /* Garante que o padding não altere a largura da coluna */
+}
+
+.img-login {
+    max-width: 600px;
+}
